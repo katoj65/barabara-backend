@@ -1,5 +1,5 @@
 #Barabara App Backend API
-## Authentication: User Signup
+## Authentication: User SignUp
 Registers a new user 
 
 **Endpoint:** `POST https://kddxhgggbhctkvrmhdgm.supabase.co/auth/v1/signup
