@@ -1,8 +1,7 @@
-#Barabara App Backend API
 ## Authentication: User Login
 Logs in users
 
-**Endpoint:** `POST  https://kddxhgggbhctkvrmhdgm.supabase.co/auth/v1/token?grant_type=password
+**Endpoint:** POST  https://kddxhgggbhctkvrmhdgm.supabase.co/auth/v1/token?grant_type=password
 ### Headers
 | Key | Value |
 | :--- | :--- |

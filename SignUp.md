@@ -1,7 +1,7 @@
 ## Authentication: User SignUp
 Registers a new user 
 
-**Endpoint:** `POST https://kddxhgggbhctkvrmhdgm.supabase.co/auth/v1/signup
+**Endpoint:** POST https://kddxhgggbhctkvrmhdgm.supabase.co/auth/v1/signup
 ### Headers
 | Key | Value |
 | :--- | :--- |
