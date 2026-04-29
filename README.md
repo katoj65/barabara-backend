@@ -86,7 +86,7 @@ Registers a new user
 
 
 
-#User Login
+
 ## Authentication: User Login
 Logs in users
 
