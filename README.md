@@ -1,12 +1,12 @@
 # Barabara App Backend API
 
-## Base URL
-### Headers
+### Headers for Unauthenticated user
 | Key | Value |
 | :--- | :--- |
 | Content-Type | `application/json` |
 | apikey | `[API-KEY]` |
 | Authorization | `Bearer [YOUR-ANON-KEY]` |
+
 
 ## base url
 https://kddxhgggbhctkvrmhdgm.supabase.co
@@ -225,6 +225,17 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ---
 
 
+--
+## Authenticated users
+## Headers for Authenticated user
+| Key | Value |
+| :--- | :--- |
+| Content-Type | `application/json` |
+| apikey | `[API-KEY]` |
+| Authorization | `Bearer[YOUR-ACCESS-TOKEN]` |
+
+--
+
 ## create user profile
 ***POST** `/rest/v1/users`
 ### Request
@@ -255,4 +266,79 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 ---
+## Get all users
+**GET** `/rest/v1/users?select=*`
+### Response
+```json
+[
+    {
+        "id": 8,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "the name goes here",
+        "gender": "male",
+        "date_of_birth": "1995-05-15",
+        "telephone": "0752111111",
+        "email": "email2@gmail.com",
+        "profile_photo_url": null,
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": true,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "dd7bb914-401b-42be-8044-25479a21dd7a"
+    },
+    {
+        "id": 9,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "the name goes here",
+        "gender": "male",
+        "date_of_birth": "1995-05-15",
+        "telephone": "0752111111",
+        "email": "email@gmail.com",
+        "profile_photo_url": null,
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": true,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "dd7bb914-401b-42be-8044-25479a21dd7a"
+    },
+    {
+        "id": 11,
+        "first_name": "John1",
+        "last_name": "Doe1",
+        "other_names": null,
+        "gender": "male",
+        "date_of_birth": "1995-05-15",
+        "telephone": "0752111111",
+        "email": "katoj30@gmail.com",
+        "profile_photo_url": null,
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": true,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "dd7bb914-401b-42be-8044-25479a21dd7a"
+    }
+]
+```
+---
+## Get user profile by user_id
+**Get** `/rest/v1/users?user_id=eq.id`
+### Response
+```json
+{
+  
+  
 
+}
+```
+---
