@@ -2,7 +2,7 @@
 
 ### Headers for Unauthenticated user
 | Key | Value |
-| :--- | :--- |
+| :-- | :-- |
 | Content-Type | `application/json` |
 | apikey | `[API-KEY]` |
 | Authorization | `Bearer [YOUR-ANON-KEY]` |
@@ -11,7 +11,7 @@
 ## base url
 https://kddxhgggbhctkvrmhdgm.supabase.co
 
----
+--
 
 ## Register
 **POST** `/auth/v1/signup`
@@ -120,7 +120,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 
----
+--
 
 ## Login
 
@@ -222,23 +222,23 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 ```
 
----
+--
 
 
 --
 ## Authenticated users
 ## Headers for Authenticated user
 | Key | Value |
-| :--- | :--- |
+| :-- | :-- |
 | Content-Type | `application/json` |
 | apikey | `[API-KEY]` |
 | Authorization | `Bearer[YOUR-ACCESS-TOKEN]` |
 
---
 
-## create user profile
-***POST** `/rest/v1/users`
-### Request
+
+### create user profile
+**POST** `/rest/v1/users`
+## Request
 ```json
 
 {
@@ -265,10 +265,10 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 
 ```
----
-## Get all users
+--
+### Get all users
 **GET** `/rest/v1/users?select=*`
-### Response
+## Response
 ```json
 [
     {
@@ -330,15 +330,53 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     }
 ]
 ```
----
-## Get user profile by user_id
-**Get** `/rest/v1/users?user_id=eq.id`
-### Response
+--
+### Get user profile by user_id
+**Get** `/rest/v1/users?user_id=eq.uuid`
+## Response
 ```json
-{
-  
+
+[
+    {
+        "id": 8,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "...",
+        "gender": "male",
+        "date_of_birth": "1995-05-15",
+        "telephone": "0752111111",
+        "email": "email@gmail.com",
+        "profile_photo_url": null,
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": true,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "......."
+    }
+]
   
 
+
+```
+--
+### Update user profile
+**PUT** `/rest/v1/users?user_id=eq.uuid`
+## Request
+```json
+{ 
+"other_names": "other name"
 }
 ```
----
+### Response
+```
+```
+--
+
+### Delete user profile
+**DELETE** `/rest/v1/users?user_id=eq.uuid`
+## Request
+
+--
