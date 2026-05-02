@@ -221,10 +221,10 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 ```
 
---
+---
 
 
---
+
 ## Authenticated users
 ## Headers for Authenticated user
 | Key | Value |
@@ -264,7 +264,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 
 ```
---
+
 ### Get all users
 **GET** `/rest/v1/users?select=*`
 ## Response
@@ -329,7 +329,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     }
 ]
 ```
---
+
 ### Get user profile by user_id
 **Get** `/rest/v1/users?user_id=eq.uuid`
 ## Response
@@ -360,7 +360,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 
 ```
---
+
 ### Update user profile
 **PUT** `/rest/v1/users?user_id=eq.uuid`
 ## Request
@@ -371,10 +371,9 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 
---
 
 ### Delete user profile
 **DELETE** `/rest/v1/users?user_id=eq.uuid`
 ## Request
 
---
+
