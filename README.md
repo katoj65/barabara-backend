@@ -11,7 +11,6 @@
 ## base url
 https://kddxhgggbhctkvrmhdgm.supabase.co
 
---
 
 ## Register
 **POST** `/auth/v1/signup`
@@ -120,7 +119,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 
---
+---
 
 ## Login
 
@@ -369,10 +368,9 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 { 
 "other_names": "other name"
 }
+
 ```
-### Response
-```
-```
+
 --
 
 ### Delete user profile
