@@ -371,9 +371,108 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 
-
 ### Delete user profile
 **DELETE** `/rest/v1/users?user_id=eq.uuid`
 ## Request
+---
 
+### Create Rider Profile (table rider)
+**POST** `/rest/v1/rider`
+## Request
+```json
 
+{
+  "uuid": "......",
+  "transport_type": "car",
+  "motor_category": "SUV",
+  "license_number": "UBJ 998J",
+  "rating": 2,
+  "total_rides": 0,
+  "total_earnings": 0,
+  "total_commission_paid": 0,
+  "total_penalty_paid": 0,
+  "is_approved": false,
+  "approved_by": null,
+  "current_ride": 0,
+  "current_location_latitude": 0,
+  "current_location_longitude": 0,
+  "last_location_update": null,
+  "created_by": null,
+  "user_id": 11
+}
+
+```
+### Get all riders
+**GET** `/rest/v1/rider?select=*`
+## Response
+```json
+
+[
+    {
+        "id": 2,
+        "created_at": "2026-05-04T06:40:06.39825+00:00",
+        "uuid": ".....",
+        "transport_type": "car",
+        "motor_category": "SUV",
+        "license_number": "UBJ 998J",
+        "rating": 2,
+        "total_rides": 0,
+        "total_earnings": 0,
+        "total_commission_paid": 0,
+        "total_penalty_paid": 0,
+        "is_approved": false,
+        "approved_by": null,
+        "current_ride": 0,
+        "current_location_latitude": 0,
+        "current_location_longitude": 0,
+        "last_location_update": null,
+        "created_by": null,
+        "user_id": 11
+    }
+]
+
+```
+### Get rider by user_id
+**GET** `/rest/v1/rider?user_id=eq.uuid`
+## Response
+```json
+[
+
+{
+        "id": 2,
+        "created_at": "2026-05-04T06:40:06.39825+00:00",
+        "uuid": ".....",
+        "transport_type": "car",
+        "motor_category": "SUV",
+        "license_number": "UBJ 998J",
+        "rating": 2,
+        "total_rides": 0,
+        "total_earnings": 0,
+        "total_commission_paid": 0,
+        "total_penalty_paid": 0,
+        "is_approved": false,
+        "approved_by": null,
+        "current_ride": 0,
+        "current_location_latitude": 0,
+        "current_location_longitude": 0,
+        "last_location_update": null,
+        "created_by": null,
+        "user_id": 11
+    }    
+
+]
+```
+### Update rider profile
+
+**PUT** `/rest/v1/rider?user_id=eq.uuid`
+## Request
+```json
+
+{ "transport_type": "motorcycle" }
+
+```
+
+### Delete rider profile
+**DELETE** `/rest/v1/rider?user_id=eq.uuid`
+## Request
+---
