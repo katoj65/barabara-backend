@@ -464,7 +464,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ```
 ### Update rider profile
 
-**PUT** `/rest/v1/rider?user_id=eq.uuid`
+**PATCH** `/rest/v1/rider?user_id=eq.uuid`
 ## Request
 ```json
 
@@ -476,3 +476,97 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 **DELETE** `/rest/v1/rider?user_id=eq.uuid`
 ## Request
 ---
+
+### Create Motor Owner
+## Request
+**POST** `/rest/v1/motor_owner`
+```json
+
+{
+  
+"user_id":11,
+"full_name": "John Doe",
+"address": "123 Market Street, Apt 4B, Springfield",
+"telephone": "+15551234567",
+"email": "john.doe@example.com",
+"country": "US",
+"nationality": "Ugandan",
+"id_front_url": "https://example-bucket.supabase.co/storage/v1/object/public/ids/id-front-001.jpg",
+"id_back_url": "https://example-bucket.supabase.co/storage/v1/object/public/ids/id-back-001.jpg",
+"id_number":"A123456789",
+"agreement_document_url": "https://example-bucket.supabase.co/storage/v1/object/public/docs/lease-agreement-001.pdf",
+"contract_start_date": "2026-01-15",
+"contract_end_date": "2027-01-14",
+"created_by": "system",
+"updated_by": "system"
+}
+
+```
+### Get all motor owners
+**GET** `/rest/v1/motor_owner?select=*`
+## Response
+```json
+[
+    {
+        "id": 2,
+        "created_at": "2026-05-04T08:11:56.142677+00:00",
+        "user_id": 11,
+        "full_name": "John Doe",
+        "address": "123 Market Street, Apt 4B, Springfield",
+        "telephone": "+15551234567",
+        "email": "john.doe@example.com",
+        "country": "US",
+        "nationality": "American",
+        "id_front_url": "https://example-bucket.supabase.co/storage/v1/object/public/ids/id-front-001.jpg",
+        "id_back_url": "https://example-bucket.supabase.co/storage/v1/object/public/ids/id-back-001.jpg",
+        "id_number": "A123456789",
+        "agreement_document_url": "https://example-bucket.supabase.co/storage/v1/object/public/docs/lease-agreement-001.pdf",
+        "contract_start_date": "2026-01-15",
+        "contract_end_date": "2027-01-14",
+        "created_by": "system",
+        "updated_by": "system"
+    }
+]
+```
+### Get motor owner by user_id
+**GET** `/rest/v1/motor_owner?user_id=eq.id`
+## Response
+```json
+[
+    {
+        "id": 2,
+        "created_at": "2026-05-04T08:11:56.142677+00:00",
+        "user_id": 11,
+        "full_name": "John Doe",
+        "address": "123 Market Street, Apt 4B, Springfield",
+        "telephone": "+15551234567",
+        "email": "john.doe@example.com",
+        "country": "US",
+        "nationality": "American",
+        "id_front_url": "https://example-bucket.supabase.co/storage/v1/object/public/ids/id-front-001.jpg",
+        "id_back_url": "https://example-bucket.supabase.co/storage/v1/object/public/ids/id-back-001.jpg",
+        "id_number": "A123456789",
+        "agreement_document_url": "https://example-bucket.supabase.co/storage/v1/object/public/docs/lease-agreement-001.pdf",
+        "contract_start_date": "2026-01-15",
+        "contract_end_date": "2027-01-14",
+        "created_by": "system",
+        "updated_by": "system"
+    }
+]
+
+
+
+```
+### Update motor owner
+**PATCH** `/rest/v1/motor_owner?user_id=eq.id`
+## Request
+```json
+{
+"full_name": "John kato"
+}
+
+```
+### Delete motor owner
+**DELETE** `/rest/v1/motor_owner?user_id=eq.id`
+---
+    
