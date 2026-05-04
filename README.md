@@ -568,5 +568,6 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ```
 ### Delete motor owner
 **DELETE** `/rest/v1/motor_owner?user_id=eq.id`
+##
 ---
     
