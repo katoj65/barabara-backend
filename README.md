@@ -696,7 +696,6 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
   },
 
 "passengerProfile":{
-"user_id": 1,
 "total_rides": 0,
 "total_expense": 0,
 "referral_code": "ABC123",
