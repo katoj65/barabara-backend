@@ -8,7 +8,7 @@ Deno.serve(async (req) => {
 
     if (!email || !password || !data) {
       return new Response(
-        JSON.stringify({ error: "Email or password or data missing" }),
+        JSON.stringify({ error: "Email, password, or data missing" }),
         { status: 400 }
       );
     }
@@ -18,93 +18,65 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    // 1) Create Auth user
-    const { data: authUser, error: authError } =
-      await supabase.auth.admin.createUser({
-        email,
-        password,
-        email_confirm: true,
-      });
+    // 1) Sign in (user must already exist)
+    const { data: sessionData, error: loginError } =
+      await supabase.auth.signInWithPassword({ email, password });
 
-    if (authError) {
+    if (loginError || !sessionData?.user?.id) {
       return new Response(
         JSON.stringify({
-          step: "auth.createUser",
-          error: authError.message,
+          step: "auth.signInWithPassword",
+          error: loginError?.message ?? "Missing authenticated user id",
         }),
-        { status: 500 }
+        { status: 401 }
       );
     }
 
-    // 2) MUST NOT be null
-    const userIdUuid = authUser?.user?.id;
-    if (!userIdUuid) {
-      return new Response(
-        JSON.stringify({
-          step: "auth.createUser",
-          error: "authUser.user.id is missing (cannot insert null user_id).",
-        }),
-        { status: 500 }
-      );
-    }
+    const authUserIdUuid = sessionData.user.id; // UUID from auth.users
 
-    // 3) Insert into public.user
+    // 2) Insert into public.user (or upsert if you prefer)
     const payload = data ?? {};
     const { id: _ignoredId, user_id: _ignoredUserId, ...safeData } = payload;
 
     const { data: userProfile, error: dbUserError } = await supabase
       .from("user")
-      .insert([
-        {
-          user_id: userIdUuid, // auth.users.id (uuid)
-          email: email,
-          first_name: safeData.first_name ?? null,
-          last_name: safeData.last_name ?? null,
-          other_names: safeData.other_names ?? null,
-          gender: safeData.gender ?? null,
-          date_of_birth: safeData.date_of_birth ?? null,
-          telephone: safeData.telephone ?? null,
-          profile_photo_url: safeData.profile_photo_url ?? null,
-          city: safeData.city ?? null,
-          country: safeData.country ?? null,
-          nationality: safeData.nationality ?? null,
-          preferred_language: safeData.preferred_language ?? null,
-          role: safeData.role ?? null,
-          online_status: safeData.online_status ?? null,
-          last_seen_at: safeData.last_seen_at ?? null,
-        },
-      ])
+      .upsert(
+        [
+          {
+            user_id: authUserIdUuid, // auth.users.id (uuid)
+            email,
+            first_name: safeData.first_name ?? null,
+            last_name: safeData.last_name ?? null,
+            other_names: safeData.other_names ?? null,
+            gender: safeData.gender ?? null,
+            date_of_birth: safeData.date_of_birth ?? null,
+            telephone: safeData.telephone ?? null,
+            profile_photo_url: safeData.profile_photo_url ?? null,
+            city: safeData.city ?? null,
+            country: safeData.country ?? null,
+            nationality: safeData.nationality ?? null,
+            preferred_language: safeData.preferred_language ?? null,
+            role: safeData.role ?? null,
+            online_status: safeData.online_status ?? null,
+            last_seen_at: safeData.last_seen_at ?? null,
+          },
+        ],
+        { onConflict: "user_id" }
+      )
       .select("*");
 
     if (dbUserError) {
       return new Response(
-        JSON.stringify({
-          step: "db.userInsert",
-          error: dbUserError.message,
-        }),
+        JSON.stringify({ step: "db.userUpsert", error: dbUserError.message }),
         { status: 500 }
       );
     }
 
     const userRow = userProfile?.[0];
+
     if (!userRow) {
       return new Response(
-        JSON.stringify({
-          step: "db.userInsert",
-          error: "User insert returned no row.",
-        }),
-        { status: 500 }
-      );
-    }
-
-    if (!userRow.user_id) {
-      return new Response(
-        JSON.stringify({
-          step: "db.userInsert",
-          error:
-            "Inserted public.user row has user_id = NULL (unexpected). Check column name and triggers/defaults.",
-          debug: { userIdUuid, email: userRow.email },
-        }),
+        JSON.stringify({ step: "db.userUpsert", error: "No user row returned." }),
         { status: 500 }
       );
     }
@@ -116,7 +88,7 @@ Deno.serve(async (req) => {
       user_id: userRow.user_id,
     };
 
-    // 4) Insert passenger_profile (instead of driver/rider profile)
+    // 3) Insert passenger_profile (instead of driver/rider profile)
     let insertedPassengerProfile = null;
 
     if (passengerProfile) {
@@ -129,19 +101,22 @@ Deno.serve(async (req) => {
 
       const { data: passengerDbData, error: passengerDbError } = await supabase
         .from("passenger_profile")
-        .insert([
-          {
-            // passenger_profile.user_id is BIGINT referencing public.user.id
-            user_id: userRow.id,
-            ...safePassenger,
-          },
-        ])
+        .upsert(
+          [
+            {
+              // passenger_profile.user_id is BIGINT referencing public.user.id
+              user_id: userRow.id,
+              ...safePassenger,
+            },
+          ],
+          { onConflict: "user_id" }
+        )
         .select("*");
 
       if (passengerDbError) {
         return new Response(
           JSON.stringify({
-            step: "db.passengerProfileInsert",
+            step: "db.passengerProfileUpsert",
             error: passengerDbError.message,
           }),
           { status: 500 }
