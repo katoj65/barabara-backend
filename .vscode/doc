@@ -1,0 +1,7 @@
+Bash Commands
+supabase login
+supabase link --project-ref kddxhgggbhctkvrmhdgm
+supabase functions deploy create-user
+
+
+
