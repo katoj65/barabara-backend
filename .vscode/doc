@@ -1,6 +1,7 @@
 Bash Commands
 supabase login
 supabase link --project-ref kddxhgggbhctkvrmhdgm
+supabase functions new create-driver
 supabase functions deploy create-user
 
 
