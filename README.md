@@ -570,4 +570,198 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 **DELETE** `/rest/v1/motor_owner?user_id=eq.id`
 ##
 ---
+
+### Create new Driver/ Rider
+**POST** `/functions/v1/create-user`
+## Request
+```json
+{
+  "email": "johndoe04@gmail.com",
+  "password": "secure-password",
+  "data": {
+    "first_name": "John",
+    "last_name":"Doe",
+    "other_names":"",
+    "gender":"male",
+    "date_of_birth":null,
+    "telephone":"0752111111",
+    "profile_photo_url":"url",
+    "country":"DRC",
+    "nationality":"DRC",
+    "role": "rider",
+    "city":"Kampala",
+    "preferred_language":"ENG",
+    "online_status":false,
+     "last_seen_at":null
+  },
+
+"riderProfile":{
+"transport_type": "motorcycle",
+"motor_category": "standard",
+"license_number": "LIC-123456", 
+"rating": 4.7,
+"total_rides": 0,
+"total_earnings": 0,
+"total_commission_paid": 0,
+"total_penalty_paid": 0,
+"is_approved": false,
+"approved_by": null,
+"current_ride": null,
+"current_location_latitude": 6.5244,
+"current_location_longitude": 3.3792,
+"last_location_update": "2026-05-05"
+}
+}
+
+```
+### Response
+
+```json
+{
+    "success": true,
+    "userAuthentication": {
+        "email": "johndoe04@gmail.com",
+        "name": "John",
+        "telephone": "0752111111",
+        "user_id": "63c3d0f3-0b68-463b-a45b-67686cecc2e2"
+    },
+    "userBio": {
+        "id": 24,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "",
+        "gender": "male",
+        "date_of_birth": null,
+        "telephone": "0752111111",
+        "email": "johndoe04@gmail.com",
+        "profile_photo_url": "url",
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": false,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "63c3d0f3-0b68-463b-a45b-67686cecc2e2"
+    },
+    "profile": {
+        "id": 12,
+        "created_at": "2026-05-05T08:01:55.632136+00:00",
+        "uuid": "1b0adadf-cece-4493-881d-d49acef7994d",
+        "transport_type": "motorcycle",
+        "motor_category": "standard",
+        "license_number": "LIC-123456",
+        "rating": 4.7,
+        "total_rides": 0,
+        "total_earnings": 0,
+        "total_commission_paid": 0,
+        "total_penalty_paid": 0,
+        "is_approved": false,
+        "approved_by": null,
+        "current_ride": null,
+        "current_location_latitude": 6.5244,
+        "current_location_longitude": 3.3792,
+        "last_location_update": "2026-05-05T00:00:00",
+        "created_by": "32974348-d768-4a08-ab74-49e01bd81580",
+        "user_id": 24
+    }
+}
+
+
+```
+---
+### Create new Passenger
+**POST** `/functions/v1/create-passenger`
+## Request
+```json
+
+{
+  "email": "passenger@gmail.com",
+  "password": "secure-password",
+  "data": {
+    "first_name": "John",
+    "last_name":"Doe",
+    "other_names":"",
+    "gender":"male",
+    "date_of_birth":null,
+    "telephone":"0752111111",
+    "profile_photo_url":"url",
+    "country":"DRC",
+    "nationality":"DRC",
+    "role": "rider",
+    "city":"Kampala",
+    "preferred_language":"ENG",
+    "online_status":false,
+     "last_seen_at":null
+  },
+
+"passengerProfile":{
+"user_id": 1,
+"total_rides": 0,
+"total_expense": 0,
+"referral_code": "ABC123",
+"referred_by": null,
+"average_rating": 4.5,
+"is_premium": false,
+"premium_expires_at": null
+}
+}
+
+
+```
+## Response
+
+```json
+{
+    "success": true,
+    "userAuthentication": {
+        "email": "passenger@gmail.com",
+        "name": "John",
+        "telephone": "0752111111",
+        "user_id": "db2c1f7f-dc86-4426-b622-363f9990396e"
+    },
+    "userBio": {
+        "id": 25,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "",
+        "gender": "male",
+        "date_of_birth": null,
+        "telephone": "0752111111",
+        "email": "passenger@gmail.com",
+        "profile_photo_url": "url",
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": false,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "db2c1f7f-dc86-4426-b622-363f9990396e"
+    },
+    "passengerProfile": {
+        "id": 1,
+        "created_at": "2026-05-05T09:20:23.768773+00:00",
+        "user_id": 25,
+        "total_rides": 0,
+        "total_expense": 0,
+        "referral_code": "ABC123",
+        "referred_by": null,
+        "average_rating": 4.5,
+        "is_premium": false,
+        "premium_expires_at": null,
+        "created_by": "88e1e207-b2ac-45f6-a80c-504b395a45c7"
+    }
+}
+
+
+```
+---
+
+
+
+
+
+
+
     
