@@ -773,9 +773,32 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 ```
 ###
+---
+### Verify OTP
+**POST** `v1/create-otp-verification`
+## Request  
+```json
+{
+  "email": "barabaraotp@gmail.com",
+  "code": "2713"
+}
 
+```
+## Response
+```json
+{
+    "valid": true,
+    "message": "OTP verified successfully",
+    "otp": {
+        "id": 18,
+        "email": "barabaraotp@gmail.com",
+        "code": "2713",
+        "status": "pending",
+        "created_date": "2026-05-06",
+        "created_time": "11:10:47"
+    }
+}
 
-
-
-
+````
+----
     
