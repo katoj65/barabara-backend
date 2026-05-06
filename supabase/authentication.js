@@ -4,6 +4,8 @@ import.meta.env.VITE_SUPABASE_URL,
 import.meta.env.VITE_SUPABASE_ANON_KEY
 );
 
+
+
 class Authentication{
 //login function 
 async login(email, password) {

@@ -756,8 +756,23 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 ---
-
-
+### Create OTP
+**POST** `/functions/v1/create-send-OTP`
+## Request
+```json
+{
+  "email": "barabaraotp@gmail.com"
+}
+```
+## Response
+```json
+{
+    "success": true,
+    "message": "OTP sent successfully",
+    "otp_id": 16
+}
+```
+###
 
 
 
