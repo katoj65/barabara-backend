@@ -18,7 +18,7 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    // 1) Sign in (user must already exist)
+    // Step 1: Sign in (user must already exist)
     const { data: sessionData, error: loginError } =
       await supabase.auth.signInWithPassword({ email, password });
 
@@ -32,9 +32,9 @@ Deno.serve(async (req) => {
       );
     }
 
-    const authUserIdUuid = sessionData.user.id; // UUID from auth.users
+    const authUserIdUuid = sessionData.user.id;
 
-    // 2) Insert into public.user (or upsert if you prefer)
+    // Step 2: Insert into public.user (or upsert if you prefer)
     const payload = data ?? {};
     const { id: _ignoredId, user_id: _ignoredUserId, ...safeData } = payload;
 
@@ -43,7 +43,7 @@ Deno.serve(async (req) => {
       .upsert(
         [
           {
-            user_id: authUserIdUuid, // auth.users.id (uuid)
+            user_id: authUserIdUuid,
             email,
             first_name: safeData.first_name ?? null,
             last_name: safeData.last_name ?? null,
@@ -88,7 +88,7 @@ Deno.serve(async (req) => {
       user_id: userRow.user_id,
     };
 
-    // 3) Insert passenger_profile (instead of driver/rider profile)
+    // Step 3: Insert passenger_profile
     let insertedPassengerProfile = null;
 
     if (passengerProfile) {
@@ -104,7 +104,6 @@ Deno.serve(async (req) => {
         .upsert(
           [
             {
-              // passenger_profile.user_id is BIGINT referencing public.user.id
               user_id: userRow.id,
               ...safePassenger,
             },

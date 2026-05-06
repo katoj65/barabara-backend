@@ -799,6 +799,40 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     }
 }
 
-````
-----
-    
+```
+###
+---
+### Get country and related cities
+**GET** `https://kddxhgggbhctkvrmhdgm.supabase.co/rest/v1/country?select=*,city(*)&city.status=eq.active`
+## Response
+```json
+
+[
+    {
+        "id": 1,
+        "created_at": "2026-05-06T20:05:17.326081+00:00",
+        "name": "Democratic Republic of Congo",
+        "country_code": "+243",
+        "currency": "Franc",
+        "status": "active",
+        "flag": null,
+        "tag": "DRC",
+        "city": [
+            {
+                "id": 1,
+                "name": "Kinshasha",
+                "status": "active",
+                "country_id": 1,
+                "created_at": "2026-05-06T20:06:16.889501+00:00",
+                "description": null
+            }
+        ]
+    }
+]
+
+
+```
+
+---
+
+
