@@ -1017,3 +1017,36 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 "ok": true
 }
 ```
+---
+### Get user profile
+**Post** `/functions/v1/get-user-profile`
+## Request 
+```json
+{
+"user_id": "bfee62dd-6908-4455-b9b4-0f34e74ff647"
+}
+```
+## Response
+```json
+{
+    "id": 38,
+    "first_name": "Musoke",
+    "last_name": "Ben",
+    "other_names": null,
+    "gender": "male",
+    "date_of_birth": "2008-05-01",
+    "telephone": "+256777889663",
+    "email": "driver@gmail.com",
+    "profile_photo_url": "...",
+    "city": "Kinshasha",
+    "country": "DR Congo",
+    "nationality": "Uganda",
+    "preferred_language": "en",
+    "online_status": false,
+    "last_seen_at": "2026-05-06",
+    "role": "rider",
+    "user_id": "0665becc-2c12-425c-af78-43b364c9e21a",
+    "rider_profile": null
+}
+```
+##
