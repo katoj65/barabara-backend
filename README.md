@@ -1037,7 +1037,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     "date_of_birth": "2008-05-01",
     "telephone": "+256777889663",
     "email": "driver@gmail.com",
-    "profile_photo_url": "...",
+    "profile_photo_url": ".....",
     "city": "Kinshasha",
     "country": "DR Congo",
     "nationality": "Uganda",
@@ -1046,7 +1046,28 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     "last_seen_at": "2026-05-06",
     "role": "rider",
     "user_id": "0665becc-2c12-425c-af78-43b364c9e21a",
-    "rider_profile": null
+    "profile": {
+        "id": 16,
+        "created_at": "2026-05-05T19:25:22.554219+00:00",
+        "uuid": "37da7576-84a8-4631-a948-b0d6d91222ec",
+        "transport_type": "motorcycle",
+        "motor_category": "standard",
+        "license_number": "LIC-123456",
+        "rating": 4.7,
+        "total_rides": 0,
+        "total_earnings": 0,
+        "total_commission_paid": 0,
+        "total_penalty_paid": 0,
+        "is_approved": false,
+        "approved_by": null,
+        "current_ride": null,
+        "current_location_latitude": 6.5244,
+        "current_location_longitude": 3.3792,
+        "last_location_update": "2026-05-05T00:00:00",
+        "created_by": "8bcd3d13-d826-434c-b301-b6dfa24fdd82",
+        "user_id": 38
+    }
 }
 ```
 ##
+---
