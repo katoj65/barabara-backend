@@ -835,4 +835,14 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ---
 
+### Get all countries
+**GET** `/rest/v1/country?select=*`
+## Response
+```json
+[{}]
+```
+---
+###
+
+
 
