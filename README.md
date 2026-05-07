@@ -842,7 +842,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 [{}]
 ```
 ---
-### Get all terms
+### Get terms for all users/ general terms
 **GET** `/rest/v1/terms?select=*`
 ## Response
 ```json
