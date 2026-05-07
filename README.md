@@ -1002,95 +1002,18 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 ---
-### Create passenger
-**POST** `/functions/v1/create-passenger`
+### Logout user
+**POST** `/auth/v1/logout`
 ## Request
 ```json
-{
-  "email": "johndoe01@gmail.com",
-  "password": "secure-password",
-  
-  "data": {
-    "first_name": "John",
-    "last_name":"Doe",
-    "other_names":"",
-    "gender":"male",
-    "date_of_birth":null,
-    "telephone":"0752111111",
-    "profile_photo_url":"url",
-    "country":"DRC",
-    "nationality":"DRC",
-    "role": "rider",
-    "city":"Kampala",
-    "preferred_language":"ENG",
-    "online_status":false,
-     "last_seen_at":null
-  },
+{ 
 
-"passengerProfile":{
-"total_rides": 0,
-"total_expense": 0,
-"referral_code": "ABC123",
-"referred_by": null,
-"average_rating": 4.5,
-"is_premium": false,
-"premium_expires_at": null
-},
-
-"nextOfKin":{
-"full_name": "Joseph Doe",     
-"gender":"male",          
-"relationship": "brother",
-"phone_number":"078900000",
-"email": "johndoe01@gmail.com",
-"address": "Kampala",
-"id_photo_url":null,
-"is_emergency_contact":null
 }
-}
-
 
 ```
-### Response
+## Response
 ```json
-
 {
-    "success": true,
-    "userRow": {
-        "id": 31,
-        "user_id": "bfee62dd-6908-4455-b9b4-0f34e74ff647"
-    },
-    "passengerProfile": {
-        "id": 8,
-        "created_at": "2026-05-07T07:07:23.710001+00:00",
-        "user_id": 31,
-        "total_rides": 0,
-        "total_expense": 0,
-        "referral_code": "ABC123",
-        "referred_by": null,
-        "average_rating": 4.5,
-        "is_premium": false,
-        "premium_expires_at": null,
-        "created_by": "00c42039-7d41-481f-8853-9dfb8d5612ad",
-        "rider_profile_id": null
-    },
-    "nextOfKeen": {
-        "id": 4,
-        "created_at": "2026-05-07T07:07:23.759635+00:00",
-        "user_id": 31,
-        "full_name": "Joseph Doe",
-        "gender": "male",
-        "relationship": "brother",
-        "phone_number": "078900000",
-        "email": "johndoe01@gmail.com",
-        "address": "Kampala",
-        "id_photo_url": null,
-        "is_emergency_contact": null,
-        "created_by": null,
-        "updated_by": null
-    }
+"ok": true
 }
-
 ```
----
-###
