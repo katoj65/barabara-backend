@@ -877,4 +877,220 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 [{}]
 ```
 ---
+### Create driver
+**POST** `/functions/v1/create-driver`
+## Request
+```json
+
+{
+  "email": "johndoe01@gmail.com",
+  "password": "secure-password",
+  "data": {
+    "first_name": "John",
+    "last_name":"Doe",
+    "other_names":"",
+    "gender":"male",
+    "date_of_birth":null,
+    "telephone":"0752111111",
+    "profile_photo_url":"url",
+    "country":"DRC",
+    "nationality":"DRC",
+    "role": "rider",
+    "city":"Kampala",
+    "preferred_language":"ENG",
+    "online_status":false,
+     "last_seen_at":null
+  },
+
+"riderProfile":{
+"transport_type": "motorcycle",
+"motor_category": "standard",
+"license_number": "LIC-123456", 
+"rating": 4.7,
+"total_rides": 0,
+"total_earnings": 0,
+"total_commission_paid": 0,
+"total_penalty_paid": 0,
+"is_approved": false,
+"approved_by": null,
+"current_ride": null,
+"current_location_latitude": 6.5244,
+"current_location_longitude": 3.3792,
+"last_location_update": "2026-05-05"
+},
+"nextOfKin":{
+"full_name": "Joseph Doe",     
+"gender":"male",          
+"relationship": "brother",
+"phone_number":"078900000",
+"email": "johndoe01@gmail.com",
+"address": "Kampala",
+"id_photo_url":null,
+"is_emergency_contact":null
+}
+}
+
+
+```
+### Response
+```json
+
+{
+    "success": true,
+    "userAuthentication": {
+        "email": "johndoe01@gmail.com",
+        "name": "John",
+        "telephone": "0752111111",
+        "user_id": "bfee62dd-6908-4455-b9b4-0f34e74ff647"
+    },
+    "userBio": {
+        "id": 31,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "",
+        "gender": "male",
+        "date_of_birth": null,
+        "telephone": "0752111111",
+        "email": "johndoe01@gmail.com",
+        "profile_photo_url": "url",
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": false,
+        "last_seen_at": null,
+        "role": "rider",
+        "user_id": "bfee62dd-6908-4455-b9b4-0f34e74ff647"
+    },
+    "nextOfKin": {
+        "id": 1,
+        "created_at": "2026-05-07T06:33:49.396511+00:00",
+        "user_id": 31,
+        "full_name": "Joseph Doe",
+        "gender": "male",
+        "relationship": "brother",
+        "phone_number": "078900000",
+        "email": "johndoe01@gmail.com",
+        "address": "Kampala",
+        "id_photo_url": null,
+        "is_emergency_contact": null,
+        "created_by": null,
+        "updated_by": null
+    },
+    "driverProfile": {
+        "id": 16,
+        "created_at": "2026-05-05T19:25:22.554219+00:00",
+        "uuid": "37da7576-84a8-4631-a948-b0d6d91222ec",
+        "transport_type": "motorcycle",
+        "motor_category": "standard",
+        "license_number": "LIC-123456",
+        "rating": 4.7,
+        "total_rides": 0,
+        "total_earnings": 0,
+        "total_commission_paid": 0,
+        "total_penalty_paid": 0,
+        "is_approved": false,
+        "approved_by": null,
+        "current_ride": null,
+        "current_location_latitude": 6.5244,
+        "current_location_longitude": 3.3792,
+        "last_location_update": "2026-05-05T00:00:00",
+        "created_by": "8bcd3d13-d826-434c-b301-b6dfa24fdd82",
+        "user_id": 31
+    }
+}
+
+```
+---
+### Create passenger
+**POST** `/functions/v1/create-passenger`
+## Request
+```json
+{
+  "email": "johndoe01@gmail.com",
+  "password": "secure-password",
+  
+  "data": {
+    "first_name": "John",
+    "last_name":"Doe",
+    "other_names":"",
+    "gender":"male",
+    "date_of_birth":null,
+    "telephone":"0752111111",
+    "profile_photo_url":"url",
+    "country":"DRC",
+    "nationality":"DRC",
+    "role": "rider",
+    "city":"Kampala",
+    "preferred_language":"ENG",
+    "online_status":false,
+     "last_seen_at":null
+  },
+
+"passengerProfile":{
+"total_rides": 0,
+"total_expense": 0,
+"referral_code": "ABC123",
+"referred_by": null,
+"average_rating": 4.5,
+"is_premium": false,
+"premium_expires_at": null
+},
+
+"nextOfKin":{
+"full_name": "Joseph Doe",     
+"gender":"male",          
+"relationship": "brother",
+"phone_number":"078900000",
+"email": "johndoe01@gmail.com",
+"address": "Kampala",
+"id_photo_url":null,
+"is_emergency_contact":null
+}
+}
+
+
+```
+### Response
+```json
+
+{
+    "success": true,
+    "userRow": {
+        "id": 31,
+        "user_id": "bfee62dd-6908-4455-b9b4-0f34e74ff647"
+    },
+    "passengerProfile": {
+        "id": 8,
+        "created_at": "2026-05-07T07:07:23.710001+00:00",
+        "user_id": 31,
+        "total_rides": 0,
+        "total_expense": 0,
+        "referral_code": "ABC123",
+        "referred_by": null,
+        "average_rating": 4.5,
+        "is_premium": false,
+        "premium_expires_at": null,
+        "created_by": "00c42039-7d41-481f-8853-9dfb8d5612ad",
+        "rider_profile_id": null
+    },
+    "nextOfKeen": {
+        "id": 4,
+        "created_at": "2026-05-07T07:07:23.759635+00:00",
+        "user_id": 31,
+        "full_name": "Joseph Doe",
+        "gender": "male",
+        "relationship": "brother",
+        "phone_number": "078900000",
+        "email": "johndoe01@gmail.com",
+        "address": "Kampala",
+        "id_photo_url": null,
+        "is_emergency_contact": null,
+        "created_by": null,
+        "updated_by": null
+    }
+}
+
+```
+---
 ###

@@ -4,7 +4,9 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 Deno.serve(async (req) => {
   try {
     const body = await req.json();
+
     const { email, password, data, passengerProfile } = body ?? {};
+    const nextOfKinInputRaw = body?.nextOfKin ?? null;
 
     if (!email || !password || !data) {
       return new Response(
@@ -18,7 +20,7 @@ Deno.serve(async (req) => {
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
     );
 
-    // Step 1: Sign in (user must already exist)
+    // 1) Sign in
     const { data: sessionData, error: loginError } =
       await supabase.auth.signInWithPassword({ email, password });
 
@@ -34,16 +36,20 @@ Deno.serve(async (req) => {
 
     const authUserIdUuid = sessionData.user.id;
 
-    // Step 2: Insert into public.user (or upsert if you prefer)
+    // 2) Upsert into public.user and return the bigint "id"
     const payload = data ?? {};
-    const { id: _ignoredId, user_id: _ignoredUserId, ...safeData } = payload;
+    const {
+      id: _ignoredId,
+      user_id: _ignoredUserId,
+      ...safeData
+    } = payload;
 
     const { data: userProfile, error: dbUserError } = await supabase
       .from("user")
       .upsert(
         [
           {
-            user_id: authUserIdUuid,
+            user_id: authUserIdUuid, // uuid
             email,
             first_name: safeData.first_name ?? null,
             last_name: safeData.last_name ?? null,
@@ -63,7 +69,8 @@ Deno.serve(async (req) => {
         ],
         { onConflict: "user_id" }
       )
-      .select("*");
+      // IMPORTANT: explicitly request "id" (bigint) + "user_id" (uuid)
+      .select("id, user_id, email, first_name, last_name, telephone");
 
     if (dbUserError) {
       return new Response(
@@ -73,43 +80,22 @@ Deno.serve(async (req) => {
     }
 
     const userRow = userProfile?.[0];
-
     if (!userRow) {
       return new Response(
-        JSON.stringify({ step: "db.userUpsert", error: "No user row returned." }),
+        JSON.stringify({ step: "db.userUpsert", error: "No user row returned" }),
         { status: 500 }
       );
     }
 
-    const userAuthentication = {
-      email: email,
-      name: userRow.first_name ?? null,
-      telephone: userRow.telephone ?? null,
-      user_id: userRow.user_id,
-    };
-
-    // Step 3: Insert passenger_profile
+    // optional: passenger profile (left mostly as-is)
     let insertedPassengerProfile = null;
-
     if (passengerProfile) {
       const passengerPayload = passengerProfile ?? {};
-      const {
-        id: _ignoredPassengerId,
-        user_id: _ignoredPassengerUserId,
-        ...safePassenger
-      } = passengerPayload;
+      const { id: _pid, user_id: _puuid, ...safePassenger } = passengerPayload;
 
       const { data: passengerDbData, error: passengerDbError } = await supabase
         .from("passenger_profile")
-        .upsert(
-          [
-            {
-              user_id: userRow.id,
-              ...safePassenger,
-            },
-          ],
-          { onConflict: "user_id" }
-        )
+        .upsert([{ user_id: userRow.id, ...safePassenger }], { onConflict: "user_id" })
         .select("*");
 
       if (passengerDbError) {
@@ -125,12 +111,67 @@ Deno.serve(async (req) => {
       insertedPassengerProfile = passengerDbData?.[0] ?? null;
     }
 
+    // 3) Insert next_of_kin from body.nextOfKin
+    let insertedNextOfKeen = null;
+
+    const nextOfKinNormalized =
+      Array.isArray(nextOfKinInputRaw) ? nextOfKinInputRaw[0] : nextOfKinInputRaw;
+
+    const shouldInsertNextOfKin =
+      nextOfKinNormalized && typeof nextOfKinNormalized === "object";
+
+    // Default debug
+    let nextOfKinInsertError: string | null = null;
+
+    if (shouldInsertNextOfKin) {
+      const nok = nextOfKinNormalized ?? {};
+
+      const {
+        id: _ignoredNokId,
+        user_id: _ignoredNokUserId,
+        created_at: _ignoredCreatedAt,
+        created_by: _ignoredCreatedBy,
+        updated_by: _ignoredUpdatedBy,
+        ...safeNok
+      } = nok;
+
+      const { data: nextOfKinRows, error: nextOfKinError } = await supabase
+        .from("next_of_kin")
+        .insert([
+          {
+            // FK target is public.user.id (bigint)
+            user_id: userRow.id,
+
+            full_name: safeNok.full_name ?? null,
+            gender: safeNok.gender ?? null,
+            relationship: safeNok.relationship ?? null,
+            phone_number: safeNok.phone_number ?? null,
+            email: safeNok.email ?? null,
+            address: safeNok.address ?? null,
+            id_photo_url: safeNok.id_photo_url ?? null,
+            is_emergency_contact: safeNok.is_emergency_contact ?? null,
+          },
+        ])
+        .select("*");
+
+      if (nextOfKinError) {
+        nextOfKinInsertError = nextOfKinError.message;
+      } else {
+        insertedNextOfKeen = nextOfKinRows?.[0] ?? null;
+      }
+    }
+
     return new Response(
       JSON.stringify({
         success: true,
-        userAuthentication,
-        userBio: userRow,
+        userRow: {
+          id: userRow.id,
+          user_id: userRow.user_id,
+        },
         passengerProfile: insertedPassengerProfile,
+
+        nextOfKeen: insertedNextOfKeen,
+       
       }),
       { headers: { "Content-Type": "application/json" }, status: 200 }
     );
