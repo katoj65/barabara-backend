@@ -842,7 +842,39 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 [{}]
 ```
 ---
+### Get all terms
+**GET** `/rest/v1/terms?select=*`
+## Response
+```json
+[{}]
+```
+---
+### Get terms for drivers and general users
+**GET** `/rest/v1/terms?select=*&target_user=in.(driver,all)`
+## Response
+```json
+[{}]
+```
+---
+### Get terms for drivers only
+**GET** `/rest/v1/terms?select=*&target_user=eq.driver`
+## Response
+```json
+[{}]
+```
+---
+### Get terms for passengers only
+**GET** `/rest/v1/terms?select=*&target_user=eq.passenger`
+## Response
+```json
+[ {} ]
+```
+---
+### Get terms for passenger and general users
+**GET** `/rest/v1/terms?select=*&target_user=in.(all,passenger)`
+## Response
+```json
+[{}]
+```
+---
 ###
-
-
-
