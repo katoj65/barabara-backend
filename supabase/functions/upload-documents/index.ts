@@ -20,7 +20,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // 📏 SIZE VALIDATION (2MB max)
+    // SIZE VALIDATION (2MB max)
     const MAX_SIZE = 2 * 1024 * 1024; // 2MB
 
     if (file.size > MAX_SIZE) {
@@ -32,7 +32,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // 📄 TYPE VALIDATION (PDF + images only)
+    // TYPE VALIDATION (PDF + images only)
     const allowedTypes = [
       "application/pdf",
       "image/png",
@@ -58,15 +58,14 @@ Deno.serve(async (req) => {
     );
 
     const bucket = "documents";
-
-    // 🧠 Safe filename
+    //  Safe filename
     const originalName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
     const timestamp = Date.now();
     const random = Math.random().toString(36).substring(2, 8);
 
     const path = `documents/${timestamp}-${random}-${originalName}`;
 
-    // 📤 Upload file
+    //  Upload file
     const { data, error } = await supabase.storage
       .from(bucket)
       .upload(path, file, {
@@ -81,7 +80,7 @@ Deno.serve(async (req) => {
       );
     }
 
-    // 🌍 Public URL
+    // Public URL
     const publicUrl = supabase.storage
       .from(bucket)
       .getPublicUrl(data.path).data.publicUrl;
