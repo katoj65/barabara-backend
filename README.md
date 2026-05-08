@@ -1071,3 +1071,53 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ```
 ##
 ---
+### Get user Bio data
+**Get** `/rest/v1/user?user_id=eq.user_id` 
+## Response
+```json
+[
+    {
+        "id": 31,
+        "first_name": "John",
+        "last_name": "Doe",
+        "other_names": "",
+        "gender": "male",
+        "date_of_birth": null,
+        "telephone": "0752111111",
+        "email": "johndoe01@gmail.com",
+        "profile_photo_url": "url",
+        "city": "Kampala",
+        "country": "DRC",
+        "nationality": "DRC",
+        "preferred_language": "ENG",
+        "online_status": false,
+        "last_seen_at": null,
+        "role": "passenger",
+        "user_id": "bfee62dd-6908-4455-b9b4-0f34e74ff647"
+    }
+]
+
+```
+---
+### Update Bio Data
+**Patch** `/rest/v1/user?id=eq.id`
+## Request
+```json
+{
+"other_names":"other names"
+}
+
+```
+### Response
+```json
+[{}]
+```
+---
+### Delete user bio data
+**Delete** `/rest/v1/user?id=eq.id`
+## Response
+```json
+[{}]
+```
+---
+###
