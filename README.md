@@ -1120,4 +1120,98 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 [{}]
 ```
 ---
-###
+### Document Upload
+**Post** `/functions/v1/upload-documents`
+## Request
+```json
+{
+"file":"......."
+}
+```
+## Response
+```json
+{
+    "success": true,
+    "path": "documents/1778236744551-pm6h4p-Screenshot_2026-05-07_at_3.25.46_PM.png",
+    "url": "https://kddxhgggbhctkvrmhdgm.supabase.co/storage/v1/object/public/documents/documents/1778236744551-pm6h4p-Screenshot_2026-05-07_at_3.25.46_PM.png"
+}
+```
+----
+
+### Add motor
+**Post** `/rest/v1/motor`
+## Request
+```json
+{
+  "transport_type": "bike",
+  "registration_number": "ABC-123",
+  "make": "Yamaha",
+  "model": "R1",
+  "color": "Black",
+  "manufacture_year": 2024,
+  "number_of_passengers": 2,
+  "police_letter_url": "https://example.com/police.pdf",
+  "insurance_url": "https://example.com/insurance.pdf",
+  "insurance_expiry_date": "2026-12-31",
+  "registration_certificate_url": "https://example.com/registration.pdf",
+  "road_worthiness_certificate_url": "https://example.com/roadworthy.pdf",
+  "maintenance_record_url": "https://example.com/maintenance.pdf",
+  "is_verified": false,
+  "verified_at": null,
+  "created_by": 31,
+  "user_id": 31
+}
+```
+## Response
+```json
+[]
+```
+---
+### Get motor
+**Get** `/rest/v1/motor?user_id=eq.user_id`
+## Response
+```json
+[
+    {
+        "id": 2,
+        "created_at": "2026-05-08T11:33:21.19358+00:00",
+        "transport_type": "bike",
+        "registration_number": "ABC-123",
+        "make": "Yamaha",
+        "model": "R1",
+        "color": "Black",
+        "manufacture_year": 2024,
+        "number_of_passengers": 2,
+        "police_letter_url": "https://example.com/police.pdf",
+        "insurance_url": "https://example.com/insurance.pdf",
+        "insurance_expiry_date": "2026-12-31",
+        "registration_certificate_url": "https://example.com/registration.pdf",
+        "road_worthiness_certificate_url": "https://example.com/roadworthy.pdf",
+        "maintenance_record_url": "https://example.com/maintenance.pdf",
+        "is_verified": false,
+        "verified_at": null,
+        "created_by": 31,
+        "user_id": 31
+    },
+]
+```
+### Update motor
+**Patch** `/rest/v1/motor?user_id=eq.user_id`
+## Request
+```json
+{
+"make" : "Suzuki"
+}
+```
+## Response
+```json
+[]
+```
+---
+
+### Delete motor
+**Delete** `/rest/v1/motor?user_id=eq.user`
+### Response
+```json
+[]
+```
