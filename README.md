@@ -1215,3 +1215,42 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ```json
 []
 ```
+### Get user wallet
+**Get** `/rest/v1/wallet?user_id=eq.user_id`
+## Response
+```json
+[]
+```
+### Update user wallet
+**Post** `/functions/v1/update-wallet`
+## Request
+``` Json
+{
+    "user_id" : 31,
+    "amount" : 1000
+}
+
+```
+## Response
+```json
+{
+    "success": true,
+    "message": "Wallet updated successfully",
+    "data": {
+        "id": 1,
+        "created_at": "2026-05-12T16:14:00.701036+00:00",
+        "user_id": 31,
+        "wallet_type": null,
+        "balance": 10000,
+        "currency": null,
+        "is_active": null,
+        "last_transaction_at": null,
+        "frozen_at": null,
+        "frozen_reason": null,
+        "created_by": null,
+        "updated_by": null
+    }
+}
+
+```
+### Get wallet and 
