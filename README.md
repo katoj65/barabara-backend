@@ -1512,3 +1512,10 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 
 ```
+
+### Get specific driver request details
+**GET** `/rest/v1/ride_request?&id=eq.request_id&driver_id=eq.driver_id`
+## Response
+``` json
+[{}]
+```
