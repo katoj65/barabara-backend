@@ -1304,6 +1304,9 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ## Request
 ``` json
 {
+"number_of_seats":null,
+"pet":true,
+"coupon_code":"1",
 "request_type":"self",
 "passenger_id": 31,
 "motor_category":"standard",

@@ -34,7 +34,9 @@ serve(async (req) => {
       estimated_duration_minutes,
       request_type,
       coupon_id,
-      coupon_code
+      coupon_code,
+      number_of_seats,
+      pet
 
 
     } = body;
@@ -77,13 +79,17 @@ serve(async (req) => {
       },
     );
 
-    // Step 6: Query rider_profile for available drivers matching pickup location, transport type and motor category
+    // Step 6: Query rider_profile for available drivers matching pickup location, transport type and motor category.
+    // If number_of_seats is provided, join motor using an inner join and filter by motor.number_of_passengers.
     let query = supabase
       .from("rider_profile")
-      .select("user_id, transport_type, motor_category, current_address, is_available")
-      .eq("current_address", pickup_address);
-
-    query = query.eq("is_available", true);
+      .select(
+        number_of_seats
+          ? "user_id, transport_type, motor_category, current_address, is_available, motor!inner(number_of_passengers)"
+          : "user_id, transport_type, motor_category, current_address, is_available",
+      )
+      .eq("current_address", pickup_address)
+      .eq("is_available", true);
 
     if (transport_type && transport_type.trim() !== "") {
       query = query.eq("transport_type", transport_type.trim());
@@ -91,9 +97,16 @@ serve(async (req) => {
     if (motor_category && motor_category.trim() !== "") {
       query = query.eq("motor_category", motor_category.trim());
     }
+    if (number_of_seats) {
+      query = query.eq("motor.number_of_passengers", number_of_seats)
+    
+    }
 
     const { data: drivers, error: driversError } = await query;
 
+
+
+    
     // Step 7: Return error if driver query failed
     if (driversError) {
       return new Response(
@@ -231,6 +244,8 @@ serve(async (req) => {
         request_type,
         coupon_id: coupon?.id ?? null,
         discount: coupon?.discount ?? null,
+        number_of_seats,
+        pet
       })
       .select()
       .maybeSingle();
