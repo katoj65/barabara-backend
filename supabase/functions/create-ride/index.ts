@@ -277,6 +277,8 @@ serve(async (req) => {
       destination_address: rideData.destination_address ?? null,
       estimated_fare: estimatedFare,
       distance_km: distanceKmNumber,
+      number_of_passengers: rideData.number_of_seats ?? null,
+      pet: rideData.pet ?? null
     }));
 
     const { error: requestError } = await supabase

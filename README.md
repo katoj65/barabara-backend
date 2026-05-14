@@ -1463,4 +1463,52 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 ```
 
-### Get driver request
+### Get driver pending request
+**GET** `rest/v1/ride_request?driver_id=eq.driver_id&status=eq.pending`
+## Response
+```json
+[{}]
+```
+
+### Get all driver request
+**GET** `/rest/v1/ride_request?driver_id=eq.driver_id`
+## Response
+```json
+[{}]
+```
+
+### Get driver accepted request
+**GET** `rest/v1/ride_request?driver_id=eq.driver_id&status=eq.accepted`
+## Response
+```json
+[{}]
+```
+
+### Driver accepts ride request
+**Post** `/functions/v1/driver-accepts-ride-request`
+## Request
+```json
+{
+"driver_id":38,
+"id":54
+}
+
+```
+## Response
+```json
+{
+    "success": true,
+    "confirmation_data": {
+        "id": 8,
+        "created_at": "2026-05-14T13:56:43.811906+00:00",
+        "passenger_id": 31,
+        "driver_id": 38,
+        "passenger_telephone": "0752111111",
+        "driver_telephone": "+256777889663",
+        "code": "4599",
+        "ride_id": 74,
+        "driver_names": "Musoke Ben"
+    }
+}
+
+```
