@@ -242,6 +242,7 @@ estimatedFare = (cost_of_start?.cost ?? 0) + (cost_of_km?.cost ?? 0)* (distanceK
       passenger_address: pickup_address,
       driver_address: driver.current_address ?? null,
       destination_address: rideData.destination_address ?? null,
+      estimated_fare: estimatedFare,
       // set it (instead of forcing null)
       distance_km: distanceKmNumber,
     }));
