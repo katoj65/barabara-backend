@@ -1253,4 +1253,194 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 
 ```
-### Get wallet and 
+### Get user wallet and related transactions
+**Get** `/rest/v1/wallet?user_id=eq.user_id&select=*,wallet_transaction(*)`
+## Response
+```json
+[
+    {
+        "id": 1,
+        "created_at": "2026-05-12T16:14:00.701036+00:00",
+        "user_id": 31,
+        "wallet_type": null,
+        "balance": 10000,
+        "currency": null,
+        "is_active": null,
+        "last_transaction_at": null,
+        "frozen_at": null,
+        "frozen_reason": null,
+        "created_by": null,
+        "updated_by": null,
+        "wallet_transaction": []
+    }
+]
+```
+
+### Create ride cost estimate
+**Post** `/functions/v1/ride-cost`
+## Request
+```json
+{
+  "distance": 12
+}
+
+```
+### Response
+```json
+{
+    "success": true,
+    "data": {
+        "distance": 12,
+        "cost_per_kilometre": 5000,
+        "start_cost": 3000,
+        "total_cost": 63000
+    }
+}
+```
+---
+### Passenger request ride
+**Post** `/functions/v1/create-ride`
+## Request
+``` json
+{
+  "passenger_id": 31,
+  "driver_id": 38,
+  "pickup_address": "123 Main St",
+  "pickup_latitude": 6.5244,
+  "pickup_longitude": 3.3792,
+  "destination_address": "456 Market St",
+  "destination_latitude": 6.4541,
+  "destination_longitude": 3.4060,
+  "waypoints": [
+    { "lat": 6.50, "lng": 3.39 },
+    { "lat": 6.47, "lng": 3.40 }
+  ],
+  "distance_km": 1.5,
+  "payment_method": "card",
+  "estimated_duration_minutes":16
+}
+```
+### Response
+```json
+{
+    "success": true,
+    "data": {
+        "ride": {
+            "id": 5,
+            "created_at": "2026-05-12T21:36:27.42554+00:00",
+            "passenger_id": 31,
+            "driver_id": 38,
+            "coupon_id": null,
+            "pickup_address": "123 Main St",
+            "pickup_latitude": 6.5244,
+            "pickup_longitude": 3.3792,
+            "destination_address": "456 Market St",
+            "destination_latitude": 6.4541,
+            "destination_longitude": 3.406,
+            "waypoints": [
+                {
+                    "lat": 6.5,
+                    "lng": 3.39
+                },
+                {
+                    "lat": 6.47,
+                    "lng": 3.4
+                }
+            ],
+            "distance_km": 1.5,
+            "estimated_duration_minutes": 16,
+            "actual_duration_minutes": null,
+            "estimated_fare": 10500,
+            "actual_fare": null,
+            "surge_multiplier": null,
+            "discount_amount": null,
+            "payment_method": "card",
+            "status": "pending",
+            "cancellation_reason": null,
+            "cancelled_by": null,
+            "cancellation_fee": null,
+            "requested_at": null,
+            "accepted_at": null,
+            "arrived_at": null,
+            "started_at": null,
+            "completed_at": null,
+            "cancelled_at": null
+        },
+        "distance_km": 1.5,
+        "estimated_fare": 10500,
+        "cost_per_km": 5000,
+        "start_cost": 3000
+    }
+}
+
+```
+
+### Driver ride confirm 
+**Post** `/functions/v1/confirm-ride`
+## Request
+```json
+{
+  "ride_id": 6,
+  "passenger_id": 31,
+  "driver_id": 38
+}
+### Response
+```json 
+{
+    "success": true,
+    "message": "Ride confirmed successfully",
+    "data": {
+        "ride": {
+            "id": 6,
+            "created_at": "2026-05-12T22:11:29.895284+00:00",
+            "passenger_id": 31,
+            "driver_id": 38,
+            "coupon_id": null,
+            "pickup_address": "123 Main St",
+            "pickup_latitude": 6.5244,
+            "pickup_longitude": 3.3792,
+            "destination_address": "456 Market St",
+            "destination_latitude": 6.4541,
+            "destination_longitude": 3.406,
+            "waypoints": [
+                {
+                    "lat": 6.5,
+                    "lng": 3.39
+                },
+                {
+                    "lat": 6.47,
+                    "lng": 3.4
+                }
+            ],
+            "distance_km": 1.5,
+            "estimated_duration_minutes": 16,
+            "actual_duration_minutes": null,
+            "estimated_fare": 10500,
+            "actual_fare": null,
+            "surge_multiplier": null,
+            "discount_amount": null,
+            "payment_method": "card",
+            "status": "confirmed",
+            "cancellation_reason": null,
+            "cancelled_by": null,
+            "cancellation_fee": null,
+            "requested_at": null,
+            "accepted_at": null,
+            "arrived_at": null,
+            "started_at": null,
+            "completed_at": null,
+            "cancelled_at": null
+        },
+        "ride_code": {
+            "id": 3,
+            "created_at": "2026-05-12T22:11:52.704894+00:00",
+            "passenger_id": 31,
+            "driver_id": 38,
+            "passenger_telephone": "0752111111",
+            "driver_telephone": "+256777889663",
+            "code": "6494",
+            "ride_id": 6
+        }
+    }
+}
+```
