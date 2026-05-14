@@ -200,10 +200,24 @@ estimatedFare = (cost_of_start?.cost ?? 0) + (cost_of_km?.cost ?? 0)* (distanceK
         estimated_fare: estimatedFare,
         request_type,
        
-       
       })
       .select()
       .maybeSingle();
+
+//loop drivers to insert into ride_request
+    // for (const driver of drivers) {
+    //   await supabase.from("ride_request").insert({
+    //     ride_id: rideData?.id,
+    //     driver_id: driver.user_id,
+    //     passenger_id:rideData?.passenger_id,
+    //     motor_type: driver.motor_category ?? null,
+    //     passenger_address: pickup_address,
+    //     driver_address: driver.current_address ?? null,
+    //     destination_address: rideData?.destination_address ?? null,
+    //     distance_km: distanceKmNumber,
+    //   });
+    // }
+
 
     if (rideError) {
       return new Response(
@@ -224,12 +238,10 @@ estimatedFare = (cost_of_start?.cost ?? 0) + (cost_of_km?.cost ?? 0)* (distanceK
       ride_id: rideData.id,
       driver_id: driver.user_id,
       passenger_id,
-
       motor_type: driver.motor_category ?? null,
-
       passenger_address: pickup_address,
       driver_address: driver.current_address ?? null,
-
+      destination_address: rideData.destination_address ?? null,
       // set it (instead of forcing null)
       distance_km: distanceKmNumber,
     }));

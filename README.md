@@ -1276,6 +1276,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ]
 ```
 
+
 ### Create ride cost estimate
 **Post** `/functions/v1/ride-cost`
 ## Request
@@ -1303,73 +1304,87 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ## Request
 ``` json
 {
-  "passenger_id": 31,
-  "driver_id": 38,
-  "pickup_address": "123 Main St",
-  "pickup_latitude": 6.5244,
-  "pickup_longitude": 3.3792,
-  "destination_address": "456 Market St",
-  "destination_latitude": 6.4541,
-  "destination_longitude": 3.4060,
-  "waypoints": [
-    { "lat": 6.50, "lng": 3.39 },
-    { "lat": 6.47, "lng": 3.40 }
-  ],
-  "distance_km": 1.5,
-  "payment_method": "card",
-  "estimated_duration_minutes":16
+"request_type":"self",
+"passenger_id": 31,
+"motor_category":"standard",
+"transport_type":"motorcycle",
+"pickup_address": "munyonyo",
+"pickup_latitude": 6.5244,
+"pickup_longitude": 3.3792,
+"destination_address": "kampala",
+"destination_latitude": 6.4541,
+"destination_longitude": 3.4060,
+"distance_km":2,
+"estimated_duration_minutes":30,
+"waypoints": [
+{ "lat": 6.50, "lng": 3.39 },
+{ "lat": 6.47, "lng": 3.40 }
+],
+"payment_method": "card"
 }
 ```
 ### Response
 ```json
 {
     "success": true,
-    "data": {
-        "ride": {
-            "id": 5,
-            "created_at": "2026-05-12T21:36:27.42554+00:00",
-            "passenger_id": 31,
-            "driver_id": 38,
-            "coupon_id": null,
-            "pickup_address": "123 Main St",
-            "pickup_latitude": 6.5244,
-            "pickup_longitude": 3.3792,
-            "destination_address": "456 Market St",
-            "destination_latitude": 6.4541,
-            "destination_longitude": 3.406,
-            "waypoints": [
-                {
-                    "lat": 6.5,
-                    "lng": 3.39
-                },
-                {
-                    "lat": 6.47,
-                    "lng": 3.4
-                }
-            ],
-            "distance_km": 1.5,
-            "estimated_duration_minutes": 16,
-            "actual_duration_minutes": null,
-            "estimated_fare": 10500,
-            "actual_fare": null,
-            "surge_multiplier": null,
-            "discount_amount": null,
-            "payment_method": "card",
-            "status": "pending",
-            "cancellation_reason": null,
-            "cancelled_by": null,
-            "cancellation_fee": null,
-            "requested_at": null,
-            "accepted_at": null,
-            "arrived_at": null,
-            "started_at": null,
-            "completed_at": null,
-            "cancelled_at": null
-        },
-        "distance_km": 1.5,
-        "estimated_fare": 10500,
-        "cost_per_km": 5000,
-        "start_cost": 3000
+    "message": "Successfully",
+    "count": 1,
+    "drivers": [
+        {
+            "user_id": 38,
+            "transport_type": "motorcycle",
+            "motor_category": "standard",
+            "current_address": "munyonyo",
+            "is_available": "true"
+        }
+    ],
+    
+    "ride": {
+        "id": 49,
+        "created_at": "2026-05-14T07:10:59.863837+00:00",
+        "passenger_id": 31,
+        "driver_id": null,
+        "coupon_id": null,
+        "pickup_address": "munyonyo",
+        "pickup_latitude": 6.5244,
+        "pickup_longitude": 3.3792,
+        "destination_address": "kampala",
+        "destination_latitude": 6.4541,
+        "destination_longitude": 3.406,
+        "waypoints": [
+            {
+                "lat": 6.5,
+                "lng": 3.39
+            },
+            {
+                "lat": 6.47,
+                "lng": 3.4
+            }
+        ],
+        "distance_km": 2,
+        "estimated_duration_minutes": 30,
+        "actual_duration_minutes": null,
+        "estimated_fare": 6000,
+        "actual_fare": null,
+        "surge_multiplier": null,
+        "discount_amount": null,
+        "payment_method": "card",
+        "status": "pending",
+        "cancellation_reason": null,
+        "cancelled_by": null,
+        "cancellation_fee": null,
+        "requested_at": "2026-05-14T07:10:59.863837",
+        "accepted_at": null,
+        "arrived_at": null,
+        "started_at": null,
+        "completed_at": null,
+        "cancelled_at": null,
+        "motor_category": "standard",
+        "transport_type": "motorcycle",
+        "cost_of_start": 2000,
+        "cost_of_km": 2000,
+        "cost_of_delay": 1000,
+        "request_type": "self"
     }
 }
 
