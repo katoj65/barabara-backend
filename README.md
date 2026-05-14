@@ -1338,7 +1338,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
             "is_available": "true"
         }
     ],
-    
+
     "ride": {
         "id": 49,
         "created_at": "2026-05-14T07:10:59.863837+00:00",
@@ -1459,3 +1459,5 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     }
 }
 ```
+
+### Get driver request
