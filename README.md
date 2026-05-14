@@ -1306,7 +1306,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 {
 "number_of_seats":null,
 "pet":true,
-"coupon_code":"1",
+"coupon_code":null,
 "request_type":"self",
 "passenger_id": 31,
 "motor_category":"standard",
