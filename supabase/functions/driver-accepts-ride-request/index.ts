@@ -206,6 +206,27 @@ const ride_code = Math.floor(1000 + Math.random() * 9000);
       );
     }
 
+    // Send the ride code to the passenger as a notification so they can share it with the driver to confirm the ride
+    const { error: notificationError } = await supabase
+      .from("notification")
+      .insert({
+        user_id: data.ride.passenger_id,
+        title: "Your Ride Code",
+        message: `Your driver has accepted the ride. Share this code with your driver to confirm: ${ride_code}`,
+      });
+
+    if (notificationError) {
+      return new Response(
+        JSON.stringify({ success: false, error: notificationError.message }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+
+
+
+
+    
 
     // Handle query error
     if (error) {

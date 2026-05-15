@@ -1520,6 +1520,7 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 [{}]
 ```
 ---
+
 ### Ride cancellation
 ## Request
 **Post** `/functions/v1/cancel-ride`
@@ -1590,4 +1591,10 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
     ]
 }
 ```
-
+---
+### Get user notifications
+**GET** `/rest/v1/notification?user_id=eq.user_id&order=created_at.desc`
+## Response
+```json
+[{},{}]
+````
