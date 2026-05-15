@@ -1519,3 +1519,75 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ``` json
 [{}]
 ```
+---
+### Ride cancellation
+## Request
+**Post** `/functions/v1/cancel-ride`
+``` json
+{
+    "user_id":31,
+    "ride_id":74,
+    "reason":"delayed"
+}
+
+```
+## Response
+```json
+{
+    "success": true,
+    "message": "Ride has been cancelled",
+    "data": [
+        {
+            "id": 74,
+            "created_at": "2026-05-14T10:56:50.502904+00:00",
+            "passenger_id": 31,
+            "driver_id": 38,
+            "coupon_id": 1,
+            "pickup_address": "munyonyo",
+            "pickup_latitude": 6.5244,
+            "pickup_longitude": 3.3792,
+            "destination_address": "kampala",
+            "destination_latitude": 6.4541,
+            "destination_longitude": 3.406,
+            "waypoints": [
+                {
+                    "lat": 6.5,
+                    "lng": 3.39
+                },
+                {
+                    "lat": 6.47,
+                    "lng": 3.4
+                }
+            ],
+            "distance_km": 2,
+            "estimated_duration_minutes": 30,
+            "actual_duration_minutes": null,
+            "estimated_fare": 6000,
+            "actual_fare": null,
+            "surge_multiplier": null,
+            "discount_amount": null,
+            "payment_method": "card",
+            "status": "cancelled",
+            "cancellation_reason": "delayed",
+            "cancelled_by": "passenger",
+            "cancellation_fee": null,
+            "requested_at": "2026-05-14T10:56:50.502904",
+            "accepted_at": "2026-05-14T13:56:43.626",
+            "arrived_at": null,
+            "started_at": null,
+            "completed_at": null,
+            "cancelled_at": null,
+            "motor_category": "standard",
+            "transport_type": "motorcycle",
+            "cost_of_start": 2000,
+            "cost_of_km": 2000,
+            "cost_of_delay": 1000,
+            "request_type": "self",
+            "discount": 50,
+            "number_of_seats": 2,
+            "pet": true
+        }
+    ]
+}
+```
+
