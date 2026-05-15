@@ -206,6 +206,27 @@ const ride_code = Math.floor(1000 + Math.random() * 9000);
       );
     }
 
+    // Store the ride code on the ride record so it can be looked up directly from the ride
+    const { error: rideCodeUpdateError } = await supabase
+      .from("ride")
+      .update({ ride_code: ride_code })
+      .eq("id", data.ride.id);
+
+    if (rideCodeUpdateError) {
+      return new Response(
+        JSON.stringify({ success: false, error: rideCodeUpdateError.message }),
+        { status: 500, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+
+
+
+
+
+
+
+    
     // Send the ride code to the passenger as a notification so they can share it with the driver to confirm the ride
     const { error: notificationError } = await supabase
       .from("notification")

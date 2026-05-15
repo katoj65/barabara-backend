@@ -1596,5 +1596,79 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 **GET** `/rest/v1/notification?user_id=eq.user_id&order=created_at.desc`
 ## Response
 ```json
-[{},{}]
-````
+[]
+```
+---
+### Driver starts a ride
+**POST** ` /functions/v1/start-ride`
+## Request
+```json
+{
+"ride_id":93,
+"passenger_id":31,
+"code":6435
+}
+
+```
+## Response
+``` json
+{
+    "success": true,
+    "message": "Ride started successfully",
+    "data": [
+        {
+            "id": 93,
+            "created_at": "2026-05-15T15:11:57.211171+00:00",
+            "passenger_id": 31,
+            "driver_id": 38,
+            "coupon_id": 1,
+            "pickup_address": "munyonyo",
+            "pickup_latitude": 6.5244,
+            "pickup_longitude": 3.3792,
+            "destination_address": "kampala",
+            "destination_latitude": 6.4541,
+            "destination_longitude": 3.406,
+            "waypoints": [
+                {
+                    "lat": 6.5,
+                    "lng": 3.39
+                },
+                {
+                    "lat": 6.47,
+                    "lng": 3.4
+                }
+            ],
+            "distance_km": 2,
+            "estimated_duration_minutes": 30,
+            "actual_duration_minutes": null,
+            "estimated_fare": 6000,
+            "actual_fare": null,
+            "surge_multiplier": null,
+            "discount_amount": 0,
+            "payment_method": "card",
+            "status": "started",
+            "cancellation_reason": null,
+            "cancelled_by": null,
+            "cancellation_fee": null,
+            "requested_at": "2026-05-15T15:11:57.211171",
+            "accepted_at": "2026-05-15T15:47:47.402",
+            "arrived_at": null,
+            "started_at": "2026-05-15T16:00:15.849",
+            "completed_at": null,
+            "cancelled_at": null,
+            "motor_category": "standard",
+            "transport_type": "motorcycle",
+            "cost_of_start": 2000,
+            "cost_of_km": 2000,
+            "cost_of_delay": 1000,
+            "request_type": "self",
+            "discount": 50,
+            "number_of_seats": null,
+            "pet": true,
+            "ride_code": "6435"
+        }
+    ]
+}
+
+```
+----
