@@ -1672,3 +1672,52 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 
 ```
 ----
+
+### Passenger search for a ride
+**POST** `/functions/v1/search-ride`
+## Request
+```json
+
+{
+    "pickup":"munyonyo",
+    "dropoff":"kampala",
+    "distance":4.2
+}
+
+
+```
+## Response
+```json
+{
+    "success": true,
+    "data": [
+        {
+            "category": "basic",
+            "drivers_available": 1,
+            "pickup": "munyonyo",
+            "dropoff": "kampala",
+            "cost": {
+                "min": 16800,
+                "max": 50400
+            }
+        },
+        {
+            "category": "family",
+            "drivers_available": 1,
+            "pickup": "munyonyo",
+            "dropoff": "kampala",
+            "cost": {
+                "min": 12600,
+                "max": 63000
+            }
+        }
+    ]
+}
+```
+
+
+
+
+
+
+
