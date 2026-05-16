@@ -1715,7 +1715,92 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 ```
 
+### Passenger request ride
+**POST** `/functions/v1/passenger-request-ride`
+## Request 
+```json
+{
+"category":"basic",
+"pet":true,
+"coupon_code":1,
+"request_type":"self",
+"passenger_id": 31,
+"pickup_address": "munyonyo",
+"pickup_latitude": 6.5244,
+"pickup_longitude": 3.3792,
+"destination_address": "kampala",
+"destination_latitude": 6.4541,
+"destination_longitude": 3.4060,
+"distance_km":5,
+"estimated_duration_minutes":30,
+"waypoints": [
+{ "lat": 6.50, "lng": 3.39 },
+{ "lat": 6.47, "lng": 3.40 }
+],
+"payment_method": "card"
+}
 
+```
+## Response
+```json
+{
+    "success": true,
+    "message": "Successfully",
+    "data": {
+        "id": 120,
+        "created_at": "2026-05-16T18:01:03.024422+00:00",
+        "passenger_id": 31,
+        "driver_id": null,
+        "coupon_id": 1,
+        "pickup_address": "munyonyo",
+        "pickup_latitude": 6.5244,
+        "pickup_longitude": 3.3792,
+        "destination_address": "kampala",
+        "destination_latitude": 6.4541,
+        "destination_longitude": 3.406,
+        "waypoints": [
+            {
+                "lat": 6.5,
+                "lng": 3.39
+            },
+            {
+                "lat": 6.47,
+                "lng": 3.4
+            }
+        ],
+        "distance_km": 5,
+        "estimated_duration_minutes": 30,
+        "actual_duration_minutes": null,
+        "estimated_fare": 20000,
+        "actual_fare": null,
+        "surge_multiplier": null,
+        "discount_amount": 0,
+        "payment_method": "card",
+        "status": "pending",
+        "cancellation_reason": null,
+        "cancelled_by": null,
+        "cancellation_fee": null,
+        "requested_at": "2026-05-16T18:01:03.024422",
+        "accepted_at": null,
+        "arrived_at": null,
+        "started_at": null,
+        "completed_at": null,
+        "cancelled_at": null,
+        "motor_category": null,
+        "transport_type": "motorcycle",
+        "cost_of_start": null,
+        "cost_of_km": null,
+        "cost_of_delay": null,
+        "request_type": "self",
+        "discount": 50,
+        "number_of_seats": null,
+        "pet": true,
+        "ride_code": "1",
+        "service_category": "basic"
+    }
+}
+```
+---
 
 
 

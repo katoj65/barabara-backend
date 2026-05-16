@@ -131,6 +131,7 @@ serve(async (req) => {
         drivers_available: availableDrivers.filter((driver) => driver.service_category === category).length,
         pickup,
         dropoff,
+        distance,
         cost: await helperPrice(supabase, category, distance),
       }))
     );

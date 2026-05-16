@@ -38,7 +38,6 @@ serve(async (req) => {
       number_of_seats,
       pet
 
-
     } = body;
 
     // Step 2: Validate required fields
