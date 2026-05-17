@@ -1804,7 +1804,55 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
         "estimated_fare": 20000
     }
 }
+```
 ---
 
-
+### Passenger gets accepted 
+**POST** `/functions/v1/passenger-gets-accepted-ride`
+## Request
+```json
+{
+"user_id":31
+}
+```
+## Response
+```json
+{
+    "success": true,
+    "data": {
+        "id": 124,
+        "pickup_address": "munyonyo",
+        "pickup_latitude": 6.5244,
+        "pickup_longitude": 3.3792,
+        "destination_address": "kampala",
+        "destination_latitude": 6.4541,
+        "destination_longitude": 3.406,
+        "waypoints": [
+            {
+                "lat": 6.5,
+                "lng": 3.39
+            },
+            {
+                "lat": 6.47,
+                "lng": 3.4
+            }
+        ],
+        "estimated_duration_minutes": 30,
+        "estimated_fare": 20000,
+        "motor_category": "standard",
+        "transport_type": "motorcycle",
+        "service_category": "basic",
+        "ride_request": [
+            {
+                "ride_make": "Suzuki",
+                "ride_color": "Black",
+                "ride_model": "R1",
+                "driver_names": "Musoke Ben",
+                "driver_telephone": "+256777889663",
+                "ride_registration_number": "ABC-123"
+            }
+        ]
+    }
+}
+```
 

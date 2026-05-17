@@ -142,6 +142,7 @@ serve(async (req) => {
         ride_model:               motor.model,
         ride_make:                motor.make,
         ride_registration_number: motor.registration_number,
+        status:                   "accepted",
       })
       .eq("id", id)
       .select("*")
@@ -230,6 +231,7 @@ serve(async (req) => {
       estimated_fare: data.estimated_fare,
       estimated_distance: data.estimated_distance,
       estimated_duration: data.estimated_duration,
+      distance_km: rideData.distance_km,
     };
 
     // Success response
