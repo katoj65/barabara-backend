@@ -186,7 +186,6 @@ const estimatedCost = distanceKmNumber !== null ? distanceKmNumber * costPerKm :
       .from("ride")
       .insert({
         passenger_id,
-        ride_code: couponCodeStr !== "" ? couponCodeStr : null,
         pickup_address,
         pickup_latitude,
         pickup_longitude,

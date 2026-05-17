@@ -1484,42 +1484,6 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 [{}]
 ```
 
-### Driver accepts ride request
-**Post** `/functions/v1/driver-accepts-ride-request`
-## Request
-```json
-{
-"driver_id":38,
-"id":54
-}
-
-```
-## Response
-```json
-{
-    "success": true,
-    "confirmation_data": {
-        "id": 8,
-        "created_at": "2026-05-14T13:56:43.811906+00:00",
-        "passenger_id": 31,
-        "driver_id": 38,
-        "passenger_telephone": "0752111111",
-        "driver_telephone": "+256777889663",
-        "code": "4599",
-        "ride_id": 74,
-        "driver_names": "Musoke Ben"
-    }
-}
-
-```
-
-### Get specific driver request details
-**GET** `/rest/v1/ride_request?&id=eq.request_id&driver_id=eq.driver_id`
-## Response
-``` json
-[{}]
-```
----
 
 ### Ride cancellation
 ## Request
@@ -1815,6 +1779,32 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 ```
 --
 
+### Driver accepts ride request
+**POST** `/functions/v1/driver-accepts-ride-request`
+## Request
+```json
+{
+"driver_id":38,
+"id":87
+}
+```
+## Response
+```json
+{
+    "success": true,
+    "message": "Ride request updated successfully",
+    "ride": {
+        "passenger_address": "munyonyo",
+        "pickup_latitude": 6.5244,
+        "pickup_longitude": 3.3792,
+        "destination_latitude": 6.4541,
+        "destination_longitude": 3.406,
+        "destination_address": "kampala",
+        "passenger_telephone": "0752111111",
+        "estimated_fare": 20000
+    }
+}
+---
 
 
 
