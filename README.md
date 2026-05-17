@@ -1801,7 +1801,19 @@ https://kddxhgggbhctkvrmhdgm.supabase.co
 }
 ```
 ---
-
+### Driver get ride requests
+**POST** `/functions/v1/driver-get-ride-requests`
+## Request
+```json
+{
+ "user_id": 38
+}
+```
+## Response
+```json
+[{},{}]
+```
+--
 
 
 
